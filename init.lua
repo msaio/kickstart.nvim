@@ -104,6 +104,12 @@ vim.o.number = true
 --  Experiment for yourself to see if you like it!
 -- vim.o.relativenumber = true
 
+-- Configure tab settings
+vim.o.tabstop = 2 -- Number of spaces that a <Tab> in the file counts for.
+vim.o.shiftwidth = 2 -- Number of spaces to use for each step of (auto)indent.
+vim.o.expandtab = true -- Use spaces instead of tabs.
+vim.o.softtabstop = 2 -- Number of spaces <Tab> counts for while editing.
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
