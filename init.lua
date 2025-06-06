@@ -1012,5 +1012,18 @@ require('lazy').setup({
   },
 })
 
+-- Source extra.vim for any Vimscript configurations
+-- Make sure you have an extra.vim file at ~/.config/nvim/extra.vim
+-- or adjust the path accordingly.
+-- This block ensures extra.vim is loaded after init.lua.
+-- NOTE:
+-- Using `init.vim` will raise errors
+local extra_vim_path = vim.fn.stdpath 'config' .. '/extra.vim'
+if vim.fn.filereadable(extra_vim_path) == 1 then
+  vim.cmd('source ' .. extra_vim_path)
+else
+  vim.notify('extra.vim not found at: ' .. extra_vim_path, vim.log.levels.WARN)
+end
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
