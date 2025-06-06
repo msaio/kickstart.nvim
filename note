@@ -1,0 +1,13 @@
+# NOTE
+## Commit format:
+
+```
+[owner][target][scope] - <action>
+<Description>
+```
+
+Ex:
+```
+[msaio][neotree][keymaps] - Update `NeoTree reveal` keymaps
+Hit `<leader> + \` to toggle Neotree
+```
