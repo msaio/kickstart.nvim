@@ -1,4 +1,4 @@
-" filepath: /Users/nqhai/.config/nvim/init.vim
+" VIMSCRIPTS
 
 " " Configure tab settings
 "set tabstop=2       " Number of spaces that a <Tab> in the file counts for.
@@ -6,6 +6,11 @@
 "set expandtab       " Use spaces instead of tabs.
 "set softtabstop=2   " Number of spaces <Tab> counts for while editing.
 
-
 " " Theme
 " colorscheme retrobox
+
+" " Utilities
+" -- // : search current selected (visualmode), 
+ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+" Explore more at
+" https://vim.fandom.com/wiki/Search_for_visually_selected_text
