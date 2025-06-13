@@ -343,6 +343,10 @@ require('lazy').setup({
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
+      current_line_blame = true, -- Blame line always enable -- Toggle with `:Gitsigns toggle_current_line_blame`
+      current_line_blame_opts = {
+        delay = 200,
+      },
       signs = {
         add = { text = '+' },
         change = { text = '~' },
