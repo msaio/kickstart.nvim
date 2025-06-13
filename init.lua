@@ -214,6 +214,66 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- TODO: MOVE TO SEPARATE FILE LATER
+-- ===============================================================================
+-- Custom keybinding to show file info and copy relative path to clipboard
+vim.keymap.set('n', '\\g', function()
+  local rel_path = vim.fn.expand '%:.' -- Relative path
+  local file_name = vim.fn.expand '%:t' -- Just filename
+  local line_num = vim.fn.line '.'
+  local col_num = vim.fn.col '.'
+  local total_lines = vim.fn.line '$'
+  local buffer_modified = vim.bo.modified and '[+]' or ''
+
+  -- Create info string similar to default Ctrl+g output
+  local info = string.format(
+    '"%s"%s line %d of %d --%.0f%%-- col %d - Relative path copied: %s',
+    file_name,
+    buffer_modified,
+    line_num,
+    total_lines,
+    (line_num / total_lines) * 100,
+    col_num,
+    rel_path
+  )
+
+  -- Copy relative path to system clipboard
+  vim.fn.setreg('+', rel_path)
+
+  -- Show the file info (like original Ctrl+g)
+  print(info)
+end, { desc = 'Show file info and copy relative path to clipboard' })
+
+-- Custom keybinding to show file info and copy absolute path to clipboard
+vim.keymap.set('n', '\\G', function()
+  local abs_path = vim.fn.expand '%:p' -- Absolute path
+  local file_name = vim.fn.expand '%:t' -- Just filename
+  local line_num = vim.fn.line '.'
+  local col_num = vim.fn.col '.'
+  local total_lines = vim.fn.line '$'
+  local buffer_modified = vim.bo.modified and '[+]' or ''
+
+  -- Create info string similar to default Ctrl+g output
+  local info = string.format(
+    '"%s"%s line %d of %d --%.0f%%-- col %d - Absolute path copied: %s',
+    file_name,
+    buffer_modified,
+    line_num,
+    total_lines,
+    (line_num / total_lines) * 100,
+    col_num,
+    abs_path
+  )
+
+  -- Copy absolute path to system clipboard
+  vim.fn.setreg('+', abs_path)
+
+  -- Show the file info (like original Ctrl+g)
+  print(info)
+end, { desc = 'Show file info and copy absolute path to clipboard' })
+
+-- ===============================================================================
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
