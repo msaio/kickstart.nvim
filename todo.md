@@ -1,3 +1,5 @@
+# Reload config without reopen the whole
+
 # Auto save
 
 # Store session
