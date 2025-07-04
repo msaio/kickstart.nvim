@@ -355,6 +355,22 @@ require('lazy').setup({
         changedelete = { text = '~' },
       },
     },
+
+    -- TODO: Colorize changes
+    --
+    -- config = function(_, opts)
+    --   require('gitsigns').setup(opts)
+    --
+    -- Custom GitSigns highlight configuration
+    --   In Lua:
+    --   vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = 'Lime', bg = 'Green' })
+    --   Equivalent in Vimscript:
+    --   highlight GitSignsAdd guifg=Lime guibg=Green
+    --
+    --   You can also add other GitSigns highlights if needed:
+    --   vim.api.nvim_set_hl(0, 'GitSignsChange', { fg = 'Yellow', bg = 'DarkYellow' })
+    --   vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = 'Red', bg = 'DarkRed' })
+    -- end,
   },
 
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
