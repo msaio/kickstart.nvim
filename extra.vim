@@ -20,3 +20,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 command! LaunchVSCode execute '!code -g ' . expand('%') . ':' . line('.') . ':' . col('.')
 nnoremap \C :LaunchVSCode<CR>
 
+" " Plugins
+" Gitsigns
+" highlight GitSignsAdd guifg=Lime guibg=Green
