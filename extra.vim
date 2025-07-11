@@ -21,6 +21,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 command! LaunchVSCode execute '!code -g ' . expand('%') . ':' . line('.') . ':' . col('.')
 nnoremap \C :LaunchVSCode<CR>
 
-" " Plugins
-" Gitsigns
+" " Plugins config - for `lazy.nvim`
+" -- Gitsigns
 " highlight GitSignsAdd guifg=Lime guibg=Green
