@@ -19,8 +19,8 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " -- \C : open current file at current position in VScode (mormal mode)
 "nnoremap \C :execute '!code -g ' . expand('%') . ':' . line('.') . ':' . col('.')<CR>
-command! LaunchVSCode execute '!code -g ' . expand('%') . ':' . line('.') . ':' . col('.')
-nnoremap \C :LaunchVSCode<CR>
+command! LaunchVSCode execute '!code . && code -g ' . expand('%') . ':' . line('.') . ':' . col('.')
+nnoremap \c :LaunchVSCode<CR>
 
 " " Plugins config - for `lazy.nvim`
 " -- Gitsigns
