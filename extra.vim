@@ -46,6 +46,21 @@ endfunction
 " -- Ex: :tabnew | tabmove -1
 nnoremap \tn :call CreateNewTabAtIndex()<CR>
 
+" -- Folds
+function! FoldManual()
+  execute 'set foldmethod=manual'
+endfunction
+"
+function! FoldIndent()
+  execute 'set foldmethod=indent'
+endfunction
+"
+" -- \fi : Set Fold indent
+nnoremap \fi :call FoldIndent()<CR>
+" -- \fm : Set Fold manual
+nnoremap \fm :call FoldManual()<CR>
+
+
 " -- This is how to make vim-plug works alongside with lazy.nvim
 " -- - Install  vim-plug
 " -- - https://github.com/junegunn/vim-plug?tab=readme-ov-file#neovim
