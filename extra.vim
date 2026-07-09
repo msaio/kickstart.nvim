@@ -83,6 +83,10 @@ Plug 'preservim/nerdtree'
 
 Plug 'kdheepak/lazygit.nvim'
 
+" -- TODO: This plugin is no longer in maintain, find alternatives
+" --       Recommended: https://github.com/kazhala/close-buffers.nvim
+Plug 'kazhala/close-buffers.nvim'
+
 call plug#end()
 
 " -- NOTE:
@@ -102,6 +106,11 @@ nnoremap <F2> :NERDTreeToggle<CR>
 nnoremap <silent> \ll :LazyGit<CR>
 nnoremap <silent> \lh :LazyGitFilter<CR>
 nnoremap <silent> \lf :LazyGitFilterCurrentFile<CR>
+
+" -- [kazhala/close-buffers]
+command! CloseUnusedBuffers execute 'BDelete! nameless hidden'
+" -- \bd: Close all unused buffers (include hidden and nameless buffers)
+nnoremap \bd :CloseUnusedBuffers<CR>
 
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
