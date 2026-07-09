@@ -22,9 +22,6 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 command! LaunchVSCode execute '!code . && code -g ' . expand('%') . ':' . line('.') . ':' . col('.')
 nnoremap \c :LaunchVSCode<CR>
 
-" " Plugins config - for `lazy.nvim`
-" -- Gitsigns
-" highlight GitSignsAdd guifg=Lime guibg=Green
 
 
 " -- This is how to make vim-plug works alongside with lazy.nvim
