@@ -81,7 +81,6 @@ call plug#begin()
 
 Plug 'preservim/nerdtree'
 
-Plug 'sindrets/diffview.nvim' " Will move to lazy.nvim later
 
 call plug#end()
 
@@ -97,11 +96,6 @@ autocmd VimEnter * if !exists(':NERDTree')
 " -- Nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>
 
-" -- Diffview
-nnoremap <silent> \do :DiffviewOpen<CR>
-nnoremap <silent> \dc :DiffviewClose<CR>
-nnoremap <silent> \dh :DiffviewFileHistory<CR>
-nnoremap <silent> \df :execute 'DiffviewFileHistory ' . expand('%')<CR>
 
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
