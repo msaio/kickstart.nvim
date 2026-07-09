@@ -22,7 +22,29 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 command! LaunchVSCode execute '!code . && code -g ' . expand('%') . ':' . line('.') . ':' . col('.')
 nnoremap \c :LaunchVSCode<CR>
 
+" -- Tabs
+" -- \tc : Close current tab
+nnoremap \tc :tabc<CR>
 
+" -- \tl : Create new tab on the left
+nnoremap \tl :-1tabnew<CR>
+
+" -- \tr : Create new tab on the right (Default)
+nnoremap \tr :tabnew<CR>
+" -- \tn : Create new tab at specified index
+function! CreateNewTabAtIndex()
+  let index = input('Enter tab index (0-based): ')
+  if index != ''
+    let index_num = str2nr(index)
+    execute 'tabnew'
+    execute 'tabmove ' . index_num
+  endif
+endfunction
+" -- NOTE: 
+" -- To manual create new tab at specific index 
+" -- Hit :tabnew | tabmove <index>
+" -- Ex: :tabnew | tabmove -1
+nnoremap \tn :call CreateNewTabAtIndex()<CR>
 
 " -- This is how to make vim-plug works alongside with lazy.nvim
 " -- - Install  vim-plug
