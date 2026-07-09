@@ -81,6 +81,7 @@ call plug#begin()
 
 Plug 'preservim/nerdtree'
 
+Plug 'kdheepak/lazygit.nvim'
 
 call plug#end()
 
@@ -96,6 +97,11 @@ autocmd VimEnter * if !exists(':NERDTree')
 " -- Nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>
 
+" -- Lazygit
+" -- \ll: Open lazygit
+nnoremap <silent> \ll :LazyGit<CR>
+nnoremap <silent> \lh :LazyGitFilter<CR>
+nnoremap <silent> \lf :LazyGitFilterCurrentFile<CR>
 
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
