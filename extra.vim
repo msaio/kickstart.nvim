@@ -70,7 +70,7 @@ nnoremap \fm :call FoldManual()<CR>
 " --      
 " -- ```
 "
-" -- Add plugins
+" -- Plugins
 " -- Open new process and run :PlugInstall
 " -- NOTE:
 " --   Eventually, vim-plug and lazy.nvim have different file tree 
