@@ -1164,6 +1164,45 @@ require('lazy').setup({
   -- TODO: Explore more
   -- At https://github.com/sindrets/diffview.nvim?tab=readme-ov-file#usage
   --
+
+  -- Copilot
+  -- Lazy-loaded: only loads when toggled with <leader>tc
+  -- This prevents node processes from spawning until explicitly needed
+  {
+    'github/copilot.vim',
+    lazy = true,
+    cmd = { 'Copilot' },
+    config = function()
+      vim.g.copilot_enabled = true
+    end,
+    init = function()
+      vim.g.copilot_enabled = false
+
+      local function toggle_copilot()
+        local loaded = require('lazy.core.config').plugins['copilot.vim']._.loaded
+        if not loaded then
+          -- First toggle: load the plugin
+          require('lazy').load { plugins = { 'copilot.vim' } }
+          print 'Copilot enabled'
+        elseif vim.g.copilot_enabled then
+          vim.cmd 'Copilot disable'
+          vim.g.copilot_enabled = false
+          print 'Copilot disabled'
+        else
+          vim.cmd 'Copilot enable'
+          vim.g.copilot_enabled = true
+          print 'Copilot enabled'
+        end
+      end
+
+      -- vim.keymap.set('n', '<leader>tc', toggle_copilot, { desc = '[T]oggle [C]opilot' })
+      vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false,
+      })
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
