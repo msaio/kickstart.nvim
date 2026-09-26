@@ -169,6 +169,46 @@ let g:fzf_action = {
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit' }
 
+
+
+" ====================================================
+" Auto-highlight trailing spaces
+"augroup TrailingSpaces
+"  autocmd!
+"  autocmd BufEnter,TextChanged,TextChangedI * call matchadd('ErrorMsg', '\s\+$')
+"augroup END
+
+" Toggle trailing spaces highlighting
+let g:trailing_spaces_enabled = 0
+let g:trailing_spaces_match_id = 0
+
+function! ToggleTrailingSpaces()
+  if g:trailing_spaces_enabled
+    " Disable trailing spaces highlighting
+    if g:trailing_spaces_match_id != 0
+      call matchdelete(g:trailing_spaces_match_id)
+      let g:trailing_spaces_match_id = 0
+    endif
+    let g:trailing_spaces_enabled = 0
+    echo "Trailing spaces highlighting disabled"
+  else
+    " Enable trailing spaces highlighting
+    let g:trailing_spaces_match_id = matchadd('ErrorMsg', '\s\+$')
+    let g:trailing_spaces_enabled = 1
+    echo "Trailing spaces highlighting enabled"
+  endif
+endfunction
+
+" Auto-highlight trailing spaces on startup and text changes
+augroup TrailingSpaces
+  autocmd!
+  autocmd BufEnter * if g:trailing_spaces_enabled | let g:trailing_spaces_match_id = matchadd('ErrorMsg', '\s\+$') | endif
+  autocmd TextChanged,TextChangedI * if g:trailing_spaces_enabled && g:trailing_spaces_match_id == 0 | let g:trailing_spaces_match_id = matchadd('ErrorMsg', '\s\+$') | endif
+augroup END
+
+" Map the toggle function to \+F1
+nnoremap \<F1> :call ToggleTrailingSpaces()<CR>
+
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
 "highlight DiffChange guibg=orange
