@@ -208,9 +208,7 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- Session management keymaps (vim-obsession)
-vim.keymap.set('n', '<leader>to', '<cmd>Obsess<CR>', { desc = 'Toggle Track/Pause session' })
-vim.keymap.set('n', '<leader>tO', '<cmd>Obsess!<CR>', { desc = 'Toggle Track/Delete session' })
+-- Session management keymaps are now defined in their respective plugin spec.
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -343,9 +341,6 @@ require('lazy').setup({
     },
     opts = {},
   },
-
-  -- Session management plugin
-  'tpope/vim-obsession',
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -1124,6 +1119,19 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+
+  -- NOTE: Personal Addons
+  -- TODO: Move personal addons to separate files
+  --
+  -- Session restore
+  {
+    'tpope/vim-obsession', -- Pure vim-scripts
+    event = 'VimEnter',
+    keys = {
+      { '<leader>to', '<cmd>Obsess<CR>', desc = 'Track/Pause session' },
+      { '<leader>tO', '<cmd>Obsess!<CR>', desc = 'Track/Delete session' },
+    },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1146,6 +1154,9 @@ require('lazy').setup({
   },
 })
 
+-- NOTE: Personal Addons settings are defined in their respective plugin spec
+
+-- NOTE:
 -- Source extra.vim for any Vimscript configurations
 -- Make sure you have an extra.vim file at ~/.config/nvim/extra.vim
 -- or adjust the path accordingly.
