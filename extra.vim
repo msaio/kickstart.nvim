@@ -87,6 +87,10 @@ Plug 'kdheepak/lazygit.nvim'
 " --       Recommended: https://github.com/kazhala/close-buffers.nvim
 Plug 'kazhala/close-buffers.nvim'
 
+Plug 'unkiwii/vim-nerdtree-sync'
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 call plug#end()
 
 " -- NOTE:
@@ -111,6 +115,25 @@ nnoremap <silent> \lf :LazyGitFilterCurrentFile<CR>
 command! CloseUnusedBuffers execute 'BDelete! nameless hidden'
 " -- \bd: Close all unused buffers (include hidden and nameless buffers)
 nnoremap \bd :CloseUnusedBuffers<CR>
+
+
+" -- [unkiwii/vim-nerdtree-sync]
+let g:nerdtree_sync_cursorline = 1
+
+" -- [Xuyuanp/nerdtree-git-plugin]
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
 
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
