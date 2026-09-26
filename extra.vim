@@ -31,6 +31,7 @@ nnoremap \tl :-1tabnew<CR>
 
 " -- \tr : Create new tab on the right (Default)
 nnoremap \tr :tabnew<CR>
+
 " -- \tn : Create new tab at specified index
 function! CreateNewTabAtIndex()
   let index = input('Enter tab index (0-based): ')
@@ -104,7 +105,7 @@ autocmd VimEnter * if !exists(':NERDTree')
   \| PlugInstall --sync | q | wincmd p
 \| endif
 
-" " Plugins config - for `vim-plug`
+" " Plugins config
 " -- Nerdtree
 nnoremap <F2> :NERDTreeToggle<CR>
 
@@ -231,7 +232,3 @@ nnoremap \<F1> :call ToggleTrailingSpaces()<CR>
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 "autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
-"highlight DiffAdd guibg=green
-"highlight DiffDelete guibg=red
-"highlight DiffChange guibg=orange
-"highlight DiffText guibg=yellow

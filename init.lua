@@ -244,7 +244,7 @@ vim.keymap.set('n', '\\g', function()
 
   -- Show the file info (like original Ctrl+g)
   print(info)
-end, { desc = 'Show file info and copy relative path to clipboard' })
+end, { desc = 'Copy Relative Path' })
 
 -- Custom keybinding to show file info and copy absolute path to clipboard
 vim.keymap.set('n', '\\G', function()
@@ -272,7 +272,7 @@ vim.keymap.set('n', '\\G', function()
 
   -- Show the file info (like original Ctrl+g)
   print(info)
-end, { desc = 'Show file info and copy absolute path to clipboard' })
+end, { desc = 'Copy Absolute Path' })
 
 -- ===============================================================================
 
