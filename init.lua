@@ -1013,8 +1013,11 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        transparent = true, -- clear Normal bg (NONE) so the catppuccin terminal bg shows through
         styles = {
           comments = { italic = false }, -- Disable italics in comments
+          sidebars = 'transparent',
+          floats = 'transparent',
         },
       }
 
@@ -1022,6 +1025,29 @@ require('lazy').setup({
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
       vim.cmd.colorscheme 'tokyonight-night'
+
+      -- Active split opaque (own dark bg), inactive splits transparent (terminal/catppuccin
+      -- bg shows). transparent=true keeps the base Normal/NormalNC = NONE, so the whole screen
+      -- backdrop is transparent. We then remap ONLY the focused window's Normal to an opaque
+      -- group via winhighlight; leaving a window clears it back to the transparent base.
+      -- (Setting Normal itself opaque fails: the screen backdrop = Normal's bg, so NONE cells
+      -- in other windows inherit that opaque backdrop instead of showing the terminal.)
+      local function set_active_hl()
+        -- Focused-window bg: gray-blue, 2 levels darker than tokyonight bg_highlight (#292e42)
+        -- for a bit more focus contrast while staying gray (not black).
+        vim.api.nvim_set_hl(0, 'ActiveWindow', { bg = '#1c1d29' })
+      end
+      set_active_hl()
+      vim.api.nvim_create_autocmd('ColorScheme', { pattern = 'tokyonight*', callback = set_active_hl })
+      local wgrp = vim.api.nvim_create_augroup('ActiveWindowBg', { clear = true })
+      vim.api.nvim_create_autocmd({ 'WinEnter', 'BufEnter' }, {
+        group = wgrp,
+        callback = function() vim.wo.winhighlight = 'Normal:ActiveWindow,NormalNC:ActiveWindow' end,
+      })
+      vim.api.nvim_create_autocmd({ 'WinLeave' }, {
+        group = wgrp,
+        callback = function() vim.wo.winhighlight = '' end,
+      })
     end,
   },
 
