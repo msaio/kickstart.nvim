@@ -1132,6 +1132,38 @@ require('lazy').setup({
       { '<leader>tO', '<cmd>Obsess!<CR>', desc = 'Track/Delete session' },
     },
   },
+
+  -- Diffview
+  {
+    'sindrets/diffview.nvim',
+    cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' }, -- Only load when these commands are used
+    keys = {
+      { '<leader>do', '<cmd>DiffviewOpen<CR>', desc = 'Diffview: Open' },
+      { '<leader>dc', '<cmd>DiffviewClose<CR>', desc = 'Diffview: Close' },
+      { '<leader>dh', '<cmd>DiffviewFileHistory<CR>', desc = 'Diffview: File History' },
+      {
+        '<leader>df',
+        function()
+          vim.cmd 'execute "DiffviewFileHistory " . expand("%")'
+        end,
+        desc = 'Diffview: File History Current File',
+      },
+    },
+    opts = {}, -- Empty opts, can add configuration later if needed
+    config = function()
+      -- The setup call is not strictly necessary for just setting highlights,
+      -- but it is where you would put other diffview options.
+      require('diffview').setup()
+
+      -- vim.api.nvim_set_hl(0, 'DiffAdd', { bg = 'green' })
+      -- vim.api.nvim_set_hl(0, 'DiffDelete', { bg = 'red' })
+      -- vim.api.nvim_set_hl(0, 'DiffChange', { bg = 'orange' })
+      -- vim.api.nvim_set_hl(0, 'DiffText', { bg = 'yellow' })
+    end,
+  },
+  -- TODO: Explore more
+  -- At https://github.com/sindrets/diffview.nvim?tab=readme-ov-file#usage
+  --
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
