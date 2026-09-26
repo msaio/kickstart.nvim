@@ -209,6 +209,28 @@ augroup END
 " Map the toggle function to \+F1
 nnoremap \<F1> :call ToggleTrailingSpaces()<CR>
 
+
+
+
+
+
+" TODO:
+"- How to remove item from quickfix list using `dd`?
+"
+"https://stackoverflow.com/a/48817071
+"" When using `dd` in the quickfix list, remove the item from the quickfix list.
+"function! RemoveQFItem()
+"  let curqfidx = line('.') - 1
+"  let qfall = getqflist()
+"  call remove(qfall, curqfidx)
+"  call setqflist(qfall, 'r')
+"  execute curqfidx + 1 . "cfirst"
+"  :copen
+"endfunction
+":command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+"autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
 "highlight DiffChange guibg=orange

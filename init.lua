@@ -1229,6 +1229,22 @@ require('lazy').setup({
       vim.g.copilot_no_tab_map = true
     end,
   },
+
+  -- TODO: Tab not so ugly any more
+  -- https://github.com/akinsho/bufferline.nvim
+  --
+  --
+  -- TODO: gemini-cli in neovim
+  -- {
+  --   'jonroosevelt/gemini-cli.nvim',
+  --   config = function()
+  --     require('gemini').setup {
+  --       split_direction = 'vertical', -- optional: "vertical" (default) or "horizontal"
+  --       -- <leader>go : Open Gemini
+  --       -- <leader>sg : Select text to Gemini
+  --     }
+  --   end,
+  -- },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
