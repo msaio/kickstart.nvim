@@ -322,6 +322,28 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
+  {
+    'ibhagwan/fzf-lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      {
+        '<leader>p',
+        function()
+          require('fzf-lua').files()
+        end,
+        desc = 'Fzf: Find files',
+      },
+      {
+        '<leader>o',
+        function()
+          require('fzf-lua').live_grep()
+        end,
+        desc = 'Fzf: Live grep',
+      },
+    },
+    opts = {},
+  },
+
   -- Session management plugin
   'tpope/vim-obsession',
 

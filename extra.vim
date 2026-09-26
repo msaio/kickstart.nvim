@@ -91,6 +91,9 @@ Plug 'unkiwii/vim-nerdtree-sync'
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 call plug#end()
 
 " -- NOTE:
@@ -134,6 +137,37 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Unknown'   :'?',
                 \ }
 let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
+
+
+" -- [junegunn/fzf.vim]
+"
+nnoremap \sg :RG <Enter>
+nnoremap \sf :Files <enter>
+" -- Using Ctrl-P/Ctrl-N for navigating last search keywords while fzf window opens
+"
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" Search history (enables ctrl-p / ctrl-n inside fzf to navigate history)
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Preview window
+" Toggle with ctrl-L while opening
+" Default: OFF
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.5, 'yoffset': 1.0 } }
+let g:fzf_preview_window = ['hidden,right,50%,<70(up,40%)', 'ctrl-L']
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val, "lnum": 1 }'))
+  tab copen
+  cfirst
+endfunction
+" This is the default extra key bindings
+let g:fzf_action = {
+      \ 'ctrl-q': function('s:build_quickfix_list'),
+      \ 'ctrl-t': 'tab split',
+      \ 'ctrl-x': 'split',
+      \ 'ctrl-v': 'vsplit' }
 
 "highlight DiffAdd guibg=green
 "highlight DiffDelete guibg=red
